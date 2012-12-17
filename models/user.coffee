@@ -13,7 +13,6 @@ class User
           last_name: 'bar'
 
     request.post options, (err, _response, _body) ->
-      console.log _body
       cb JSON.stringify(_body)
 
   constructor: (attributes) ->
