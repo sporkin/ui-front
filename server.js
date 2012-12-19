@@ -1,8 +1,7 @@
-require('coffee-script');
-
 /**
- * Module dependencies.
+ * Module dependencies & App setup
  */
+require('coffee-script');
 
 var express = require('express'),
     routes = require('./routes'),
@@ -11,31 +10,15 @@ var express = require('express'),
     path = require('path'),
     amqp = require('amqp');
 
-
-var connection = amqp.createConnection({
-  host: '127.0.0.1'
-});
-
-connection.addListener('ready', function () {
-  var exchange1 = connection.exchange('ui-service', {type: 'fanout'});
-  var exchange2 = connection.exchange('auth-service', {type: 'fanout'});
-
-  var q = connection.queue('qsdfw', function() {
-    q.bind(exchange1, "*");
-    q.bind(exchange2, "*");
-
-    q.subscribe(function (m) {
-      console.log(JSON.parse(m.data.toString()))
-    })
-  });
-});
-
-var app = express();
+// process.env.PORT
+var app = express()
+  , server = app.listen(3000)
+  , io = require('socket.io').listen(server);
 
 app.configure(function() {
-  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(require('connect-assets')());  
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -48,9 +31,67 @@ app.configure('development', function() {
   app.use(express.errorHandler());
 });
 
+
+
+/**
+ * Routing Prototype
+ */
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function() {
-  console.log("Express server listening on port " + app.get('port'));
+
+
+/**
+ * AMQP Messaging prototype
+ */
+var connection = amqp.createConnection({
+  host: '127.0.0.1'
+});
+
+var emailToRenderEventsMap = {};
+
+connection.addListener('ready', function () {
+  var exchange1 = connection.exchange('ui-service', {type: 'fanout'});
+  var exchange2 = connection.exchange('auth-service', {type: 'fanout'});
+  var i = 0;
+  var q = connection.queue('ui-front-shared-queue', function() {
+    q.bind(exchange1, "*");
+    q.bind(exchange2, "*");
+    q.subscribe(function (m) {
+      data = JSON.parse(m.data.toString())
+      console.log(emailToRenderEventsMap)
+      if(data.email){
+        if(emailToRenderEventsMap[data.email] != undefined){
+          emailToRenderEventsMap[data.email].push((data.email + " -> " + i++));
+        }else{
+          emailToRenderEventsMap[data.email] = [data.email + " -> " + i++]; 
+        }
+      }
+    })
+  });
+});
+
+
+/**
+ * Async UI rendering events propagation prototype
+ * add pubsub dynamic channeling
+ */
+setInterval(function() {User.create(function(){})}, 1000)
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  var email = null;
+  socket.on('my other event', function (data) {
+    email = data.email
+    console.log(data)
+  });
+  
+  setInterval(function() {
+    if(email != null){
+      if(emailToRenderEventsMap[email] != undefined){
+        d = emailToRenderEventsMap[email].pop()
+        socket.emit('new-data', { cell: d, table: emailToRenderEventsMap[email] });
+      }
+    }
+  }, 4000)
 });

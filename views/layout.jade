@@ -2,6 +2,10 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    != css('test')
+    != js('vendor/jquery-1.8.3.min')
+    != js('vendor/underscore-min')
+    != js('vendor/backbone')
+    != js('test')
   body
     block content

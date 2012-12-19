@@ -1,12 +1,15 @@
 request = require 'request'
 
 class User
+  @i: 1
   @create: (cb) ->
+    testingEmail = ['a@a.com', 'b@b.com', 'c@c.com']
+
     options =
       uri:"http://localhost:3001/users"
       json:
         user:
-          email: 'a@a.com'
+          email: testingEmail[@i++%3]
           password: '12345'
           password_confirmation: '12345'
           first_name: 'foo'
