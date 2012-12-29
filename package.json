@@ -41,20 +41,21 @@
       "backbone": null,
       "underscore": null
     },
-    "include": [
-      "models/user.js"
-    ],
+    "include": ["models/user.js"],
+    "config": {
+      "paths": {
+        "bootstrap": ["//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min", "lib/bootstrap"]
+      }
+    },
     "shim": {
       "backbone": {
-        "deps": [
-          "jquery",
-          "underscore"
-        ],
+        "deps": ["jquery", "underscore"],
         "exports": "Backbone"
       },
       "underscore": {
         "exports": "_"
-      }
+      },
+      "bootstrap": ["jquery"]
     }
   }
 }

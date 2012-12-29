@@ -1,3 +1,4 @@
+@import 'vendor/twitterbootstrap/bootstrap.css';
 .foo{color:#f00;font-size:4em}
 body{padding:52px;color:#008000;font:14px "Lucida Grande",Helvetica,Arial,sans-serif}
 a{color:#f00}

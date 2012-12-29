@@ -1,9 +1,19 @@
 extends layout
 
 block content
+  i.icon-search
+  .label Default
   h1= title
   p Welcome to #{title}
-  p.foo wow
+  .well wow
+  .close fooooo
+  ul.nav.nav-tabs
+    li
+      a(data-toggle = "tab") Home
+    li
+      a(data-toggle = "tab") Profile
+  
+  #element(data-original-title = "foo") this is element
 
   script(src='/socket.io/socket.io.js')
   script(src="/vendor/require.js")
@@ -26,4 +36,15 @@ block content
 
     require(['models/user'], function (app) {
       app.init();
+    });
+
+    require(['jquery', 'bootstrap'], function($, bb) {
+
+      $(document).ready(function(){
+        console.log("Loaded :)");
+        console.log($(".close").alert)
+        $('#element').tooltip('show')
+      })
+      
+      return {};
     });
