@@ -1,36 +1,41 @@
-/**
- * Module dependencies & App setup
- */
 require('coffee-script');
-
 var express = require('express'),
-    routes = require('./routes'),
-    user = require('./routes/user'),
+    routes = require('./app/routes'),
+    user = require('./app/routes/user'),
     http = require('http'),
     path = require('path'),
-    amqp = require('amqp');
+    amqp = require('amqp'),
+    stylus = require('stylus'),
+    nib = require('nib');
 
-// process.env.PORT
-var app = express()
-  , server = app.listen(3000)
-  , io = require('socket.io').listen(server);
+var app = express(),
+    server = app.listen(3000),
+    io = require('socket.io').listen(server);
 
 app.configure(function() {
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/app/views');
   app.set('view engine', 'jade');
-  app.use(require('connect-assets')());  
+  app.use(require('connect-assets')());
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(require('stylus').middleware({
+    src: __dirname + '/app/assets',
+    dest: __dirname + '/public',
+    compile: function(str, path) {
+      return stylus(str).set('filename', path).set('compress', true).use(require('nib')());
+    }
+  }));
+
+  app.use(express.static(path.join(__dirname, '/public/javascripts')));
+  app.use(express.static(path.join(__dirname, '/public')));
 });
 
 app.configure('development', function() {
   app.use(express.errorHandler());
 });
-
 
 
 /**
@@ -40,7 +45,6 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 
-
 /**
  * AMQP Messaging prototype
  */
@@ -48,23 +52,27 @@ var connection = amqp.createConnection({
   host: '127.0.0.1'
 });
 
-var emailToRenderEventsMap = {};
 
-connection.addListener('ready', function () {
-  var exchange1 = connection.exchange('ui-service', {type: 'fanout'});
-  var exchange2 = connection.exchange('auth-service', {type: 'fanout'});
+var emailToRenderEventsMap = {};
+connection.addListener('ready', function() {
+  var exchange1 = connection.exchange('ui-service', {
+    type: 'fanout'
+  });
+  var exchange2 = connection.exchange('auth-service', {
+    type: 'fanout'
+  });
   var i = 0;
   var q = connection.queue('ui-front-shared-queue', function() {
     q.bind(exchange1, "*");
     q.bind(exchange2, "*");
-    q.subscribe(function (m) {
+    q.subscribe(function(m) {
       data = JSON.parse(m.data.toString())
       console.log(emailToRenderEventsMap)
-      if(data.email){
-        if(emailToRenderEventsMap[data.email] != undefined){
+      if (data.email) {
+        if (emailToRenderEventsMap[data.email] != undefined) {
           emailToRenderEventsMap[data.email].push((data.email + " -> " + i++));
-        }else{
-          emailToRenderEventsMap[data.email] = [data.email + " -> " + i++]; 
+        } else {
+          emailToRenderEventsMap[data.email] = [data.email + " -> " + i++];
         }
       }
     })
@@ -74,24 +82,31 @@ connection.addListener('ready', function () {
 
 /**
  * Async UI rendering events propagation prototype
- * add pubsub dynamic channeling
+ * TODO: add pubsub dynamic channeling
  */
-setInterval(function() {User.create(function(){})}, 1000)
+setInterval(function() {
+  User.create(function() {})
+}, 4000)
 
-io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
+io.sockets.on('connection', function(socket) {
+  socket.emit('news', {
+    hello: 'world'
+  });
   var email = null;
-  socket.on('my other event', function (data) {
+  socket.on('my other event', function(data) {
     email = data.email
     console.log(data)
   });
-  
+
   setInterval(function() {
-    if(email != null){
-      if(emailToRenderEventsMap[email] != undefined){
+    if (email != null) {
+      if (emailToRenderEventsMap[email] != undefined) {
         d = emailToRenderEventsMap[email].pop()
-        socket.emit('new-data', { cell: d, table: emailToRenderEventsMap[email] });
+        socket.emit('new-data', {
+          cell: d,
+          table: emailToRenderEventsMap[email]
+        });
       }
     }
-  }, 4000)
+  }, 3000)
 });

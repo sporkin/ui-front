@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p.foo wow
+
+  script(src='/socket.io/socket.io.js')
+  script(src="/vendor/require.js")
+
+  script(type="text/javascript")
+    var socket = io.connect('http://127.0.0.1:3000');
+    var json = JSON.parse(!{title})
+    socket.on('news', function (data) {
+      socket.emit('my other event', { email: json.email });
+    });
+
+    socket.on('new-data', function (data) {
+      console.log(JSON.stringify(data))
+    });
+
+  script(type="text/javascript")
+    require(['jquery'], function (jquery) {
+      console.log('ff2')
+    });
+
+    require(['models/user'], function (app) {
+      app.init();
+    });
