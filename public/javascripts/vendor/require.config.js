@@ -36,8 +36,9 @@ if (typeof require !== "undefined" && require.config) {
     "paths": {
         "bootstrap": [
             "//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min",
-            "lib/bootstrap"
-        ]
+            "libs/bootstrap"
+        ],
+        "dust": "libs/dust-full-1.1.1"
     },
     "packages": [
         {
@@ -75,8 +76,9 @@ else {
     "paths": {
         "bootstrap": [
             "//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min",
-            "lib/bootstrap"
-        ]
+            "libs/bootstrap"
+        ],
+        "dust": "libs/dust-full-1.1.1"
     },
     "packages": [
         {

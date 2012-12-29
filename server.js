@@ -6,16 +6,19 @@ var express = require('express'),
     path = require('path'),
     amqp = require('amqp'),
     stylus = require('stylus'),
-    nib = require('nib');
+    nib = require('nib'),
+    dust = require('dustjs-linkedin'),
+    cons = require('consolidate');
 
 var app = express(),
     server = app.listen(3000),
     io = require('socket.io').listen(server);
 
 app.configure(function() {
+  app.engine('dust', cons.dust);
   app.set('views', __dirname + '/app/views');
   app.set('view engine', 'jade');
-  app.use(require('connect-assets')());
+  app.set('template_engine', 'dust');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -86,7 +89,7 @@ connection.addListener('ready', function() {
  */
 setInterval(function() {
   User.create(function() {})
-}, 4000)
+}, 400000)
 
 io.sockets.on('connection', function(socket) {
   socket.emit('news', {
@@ -108,5 +111,5 @@ io.sockets.on('connection', function(socket) {
         });
       }
     }
-  }, 3000)
+  }, 300000)
 });
