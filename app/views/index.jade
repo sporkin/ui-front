@@ -39,13 +39,12 @@ block content
     });
 
     require(['jquery', 'bootstrap'], function($, bb) {
-
       $(document).ready(function(){
         console.log("Loaded :)");
         console.log($(".close").alert)
         $('#element').tooltip('show')
-      })
-      
+      });
+
       return {};
     });
 
@@ -53,7 +52,7 @@ block content
   script(src='/libs/dust-full-1.1.1.js')
   script(src='/templates/bar.js')
   script(src='/templates/baz.js')
-  script(type="text/javascript")  
+  script(type="text/javascript")
     require(['jquery'], function($) {
       $(document).ready(function(){
         dust.render("bar",{name:"suck"}, function(err,out){

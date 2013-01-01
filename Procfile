@@ -6,4 +6,3 @@ auth_service_log: tail -f ../auth-service/log/development.log
 ui_service_log: tail -f ../ui-service/log/development.log
 coffee_compiler: jitter app/assets/coffeescripts public/javascripts
 dust_compiler: subcontract --chdir ./bin -- node dust_compiler.js
-
