@@ -1,0 +1,15 @@
+# javascript dependency
+
+JAMSJS: 
+  backbone 
+  underscore
+  jquery
+
+NONE-AMD: 
+  dust.js
+
+AMD:
+  *everything
+
+
+# templates are manually included for now

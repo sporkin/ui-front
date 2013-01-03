@@ -2079,8 +2079,7 @@ if (typeof require !== "undefined" && require.config) {
         "bootstrap": [
             "//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min",
             "libs/bootstrap"
-        ],
-        "dust": "libs/dust-full-1.1.1"
+        ]
     },
     "packages": [
         {
@@ -2119,8 +2118,7 @@ else {
         "bootstrap": [
             "//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min",
             "libs/bootstrap"
-        ],
-        "dust": "libs/dust-full-1.1.1"
+        ]
     },
     "packages": [
         {
