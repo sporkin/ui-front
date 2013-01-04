@@ -44,7 +44,7 @@ require(['require', './test/browser/support/chai', './test/browser/support/sinon
   });
 
   // all test files
-  require(['./test/browser/models/test_spec'], function() {
+  require(['./test/browser/javascripts/models/test_spec'], function() {
     mocha.run()
   });
 });

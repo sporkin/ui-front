@@ -33,12 +33,6 @@ var jam = {
 
 if (typeof require !== "undefined" && require.config) {
     require.config({
-    "paths": {
-        "bootstrap": [
-            "//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min",
-            "libs/bootstrap"
-        ]
-    },
     "packages": [
         {
             "name": "backbone",
@@ -72,12 +66,6 @@ if (typeof require !== "undefined" && require.config) {
 }
 else {
     var require = {
-    "paths": {
-        "bootstrap": [
-            "//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min",
-            "libs/bootstrap"
-        ]
-    },
     "packages": [
         {
             "name": "backbone",
