@@ -38,7 +38,7 @@ block content
       app.init();
     });
 
-    require(['jquery', 'bootstrap'], function($, bb) {
+    require(['jquery', 'bootstrap'], function() {
       $(document).ready(function(){
         console.log("Loaded :)");
         console.log($(".close").alert)
@@ -52,11 +52,13 @@ block content
   script(src='/libs/dust-full-1.1.1.js')
   script(src='/templates/bar.js')
   script(src='/templates/baz.js')
+  
+  
   script(type="text/javascript")
     require(['jquery'], function($) {
       $(document).ready(function(){
         dust.render("bar",{name:"suck"}, function(err,out){
-          console.log(out)
+          console.log(out, "wwwww")
         })
       })
       return {};

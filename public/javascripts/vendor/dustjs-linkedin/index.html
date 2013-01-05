@@ -1,0 +1,356 @@
+<!DOCTYPE HTML><html><head><title>dust</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono:regular&subset=latin" rel="stylesheet" type="text/css"><style type="text/css">@font-face {
+  font-family: 'Droid Sans Mono';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Droid Sans Mono'), local('DroidSansMono'), url('http://themes.googleusercontent.com/static/fonts/droidsansmono/v4/ns-m2xQYezAtqh7ai59hJaH0X__W3S3MJL29bc5CWfs.woff') format('woff');
+}
+
+body {
+  font-family: "HelveticaNeue-Light","Helvetica Neue Light",FreeSans,Helmet,Arial,sans-serif;
+  font-size: 13px;
+  color: #333;
+  background: #E9E9E9 url('./docs/img/background.png');
+  margin: 0px;
+}
+
+h4, h3, .content ul {
+margin-top: 26px;
+margin-bottom: 26px;
+}
+
+.content ul li {
+margin-top: 13px;
+margin-bottom: 13px;
+}
+
+h1 {
+float: left;
+}
+
+.logo {
+margin-top: 7px;  
+}
+
+h1, h2 {
+line-height: 48px;
+font-size: 30px;
+font-weight: normal;
+margin: 8px 0 8px 2%;
+}
+
+h3 {
+font-size: 24px;
+}
+
+h4 {
+  font-size: 1.5em;
+  color: #0073B2;
+  border-bottom: 1px solid #CED4DD;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+h1, h2, pre, code, .console, .status, #nav, #tagline {
+font-family: 'Droid Sans Mono', 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace;
+}
+
+a:link, a:visited {
+color: #ef674a;
+}
+
+p code {
+font-size: 16px;
+line-height: 16px;
+}
+
+pre, .console {
+background-color: #191919;
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+
+.console {
+font-size: 14px;
+height: 320px;
+color: #DDD;
+margin-top: 26px;
+margin-bottom: 26px;
+border: 1px solid #888;
+resize: auto;
+overflow: auto;
+padding: 2px;
+}
+
+textarea {
+width: 100%;
+display: block;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+
+#nav {
+position: fixed;
+top: 18px;
+right: 2%;
+font-size: 22px;
+z-index: 99;
+}
+
+#nav a:link, #nav a:visited {
+color: #eaf2d9;
+}
+
+#nav a {
+text-decoration: none;
+margin-left: 17px;
+}
+
+#nav a:last {
+margin: 0;
+}
+
+#tagline {
+position: absolute;
+display: none;
+top: 24px;
+font-size: 14px;
+}
+
+#guide pre {
+font-size: 16px;
+line-height: 26px;
+color: #dddddd;
+padding: 26px;
+margin: 26px 0;
+}
+
+#header, #demo {
+clear: both;
+}
+
+.ok {
+background-color: #64AE55;
+color: white;
+}
+
+.icon {
+display: inline-block;
+vertical-align: middle;
+height: 0;
+width: 0;
+font-size: 0;
+line-height: 0;
+overflow: hidden;
+padding-left: 35px;
+padding-bottom: 28px;
+content: " 0020";
+background: none no-repeat scroll 0 0 
+transparent;
+background-image: url('./docs/img/sprite_icons_alert_white_medium_v1.png');
+float: left;
+margin: 1px 0 -5px 5px;
+}
+
+.iconOk {
+  background-position: 0 -84px;
+}
+
+.iconFail {
+  background-position: 0 -56px;
+}
+
+.error {
+background-color: #DE595A;
+}
+
+.error span{
+color: white;
+font-size: 10px;
+}
+
+.pending {
+background-color: #487EAA;
+color: white;
+}
+
+.status {
+font-size: 14px;
+padding: 2px;
+margin-top: -24px;
+height: 30px;
+}
+
+.status span {
+  line-height: 30px;
+}
+
+.header, .content {
+clear: both;
+width: 100%;
+overflow: hidden;
+position: relative;
+}
+
+.header {
+  clear: both;
+  width: 100%;
+  -webkit-box-shadow: 0px 4px 6px hsla(0, 0%, 0%, 0.4);
+  -moz-box-shadow: 0px 4px 6px hsla(0, 0%, 0%, 0.4);
+  background: #E9E9E9 url('./docs/img/background_header.jpg');
+  color: white;
+}
+
+#main {
+  margin-left: 35px;
+  margin-right: 35px;
+  margin-top: 90px;
+}
+
+p.subtitle {
+  font-family: "HelveticaNeue-Light","Helvetica Neue Light",FreeSans,Helmet,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0073B2;
+}
+
+.header, .col1, .col2, .col3, .divisor, .divisor2 {
+  float: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.col1 {
+  width: 96%;
+  width: 25%;
+}
+
+.col2 {
+  width: 25%;
+  left: 2%;
+}
+
+.col3 {
+  width: 25%;
+  left: 4%;
+}
+
+.divisor {
+  margin-top: 200px;
+  left: 1%;
+}
+.divisor2 {
+  left: 3%; 
+  margin-top: 200px;
+}
+
+
+.docked {
+position: fixed;
+width: 100%;
+top: 0;
+background-color: hsla(10, 87%, 18%, 0.80);
+z-index: 5;
+}
+
+code .keyword { font-weight: bold; color: #dd7522 }
+code .string, code .regexp { color: #669933 }
+code .class, code .special { }
+code .number { color: #eddd3d }
+code .comment { color: grey }
+</style><script src="vendor/ecma.js"></script><script src="vendor/jquery.min.js"></script><script src="vendor/jsdump.js"></script><script src="vendor/beautify.js"></script><script src="lib/dust.js"></script><script src="lib/parser.js"></script><script src="lib/compiler.js"></script><script src="test/jasmine-test/spec/coreTests.js"></script><script src="test/uutest.js"></script><script src="test/core.js"></script><script type="text/javascript">(function(){dust.register("select",body_0);function body_0(chk,ctx){return chk.write("<select style=\"clear: both;\">").section(ctx.get("examples"),ctx,{"block":body_1},null).write("</select>");}function body_1(chk,ctx){return chk.write("<option ").reference(ctx.get("selected"),ctx,"h").write(" value=\"").helper("idx",ctx,{"block":body_2},null).write("\">").reference(ctx.get("name"),ctx,"h").write("</option>");}function body_2(chk,ctx){return chk.reference(ctx.getPath(true,[]),ctx,"h");}return body_0;})();</script><script type="text/javascript">jsDump.parsers['function'] = function(fn) {
+  return fn.toString();
+}
+
+function renderDemo() {
+  var tmpl = dust.cache["demo"],
+      source = $('#input-context').val();
+
+  $('#output-text').empty();
+
+  if (tmpl && source) {
+    setPending('#input-context');
+    setPending('#output-text');
+    try {
+      eval("var context = " + source + ";");
+      if (typeof context === 'function') {
+        context = context();
+      }
+      dust.stream("demo", context)
+          .on('data', function(data) {
+            $('#output-text').append(dust.escapeHtml(data));
+          })
+          .on('end', function() {
+            setOkay('#input-context');
+            setOkay('#output-text');
+          })
+          .on('error', function(err) {
+            setError('#input-context', err);
+          });
+    } catch(err) {
+      setError('#input-context', err);
+    }
+  }
+}
+
+function setOkay(sel) {
+  $(sel).next()
+  .removeClass('pending')
+  .addClass('ok')
+  .html('Ready');
+}
+
+function setPending(sel) {
+  $(sel).next()
+  .removeClass('ok')
+  .removeClass('error')
+  .addClass('pending')
+  .html('Pending');
+}
+
+function setError(sel, err) {
+  $(sel).next()
+  .removeClass('pending')
+  .addClass('error')
+  .html(err.toString());
+}
+
+function dump(obj) {
+  return js_beautify(jsDump.parse(obj), {
+    indent_size: 2
+  });
+}
+
+function dumpError(err) {
+  var out = err.testName + " -> ";
+  if (!err.message) {
+    err.message = jsDump.parse(err.expected)
+    + " " + err.operator + " " + jsDump.parse(err.actual);
+  }
+  return out + err.stack;
+}
+
+$(document).ready(function() {
+  $('#tagline').empty().show().css({left: ($(window).width() * .02) + 125});
+
+  $('#input-source').change(function() {
+    setPending('#input-source');
+    try {
+      var compiled = dust.compile($(this).val(), "demo");
+      dust.loadSource(compiled);
+      $('#output-js').text(js_beautify(compiled, {
+        indent_size: 2
+      }));
+      setOkay('#input-source');
+    } catch(err) {
+      setError('#input-source', err);
+      return;
+    }
+    renderDemo();
+  });
+
+  $('#input-context').change(renderDemo);
+
+  $('#select > select').change();
+  $(window).scroll();
+
+});</script></head><body><div id="dust" class="content"><div class="header"><h1>{dust}</h1><img src="./docs/img/logo-linkedin.png" height="55" width="55" alt="LinkedIn" class="logo"><span id="tagline">asynchronous streaming templates for the browser and node.js</span></div><div id="nav"><a href="#dust">home</a><a href="#guide">Test-tool</a><a href="#tests">Wiki</a><a href="#about">Code</a></div><div id="main"><h4>Why JavaScript Templating?</h4><p class="subtitle">There are a number of advantages provided by implementing templates in JavaScript with the Dust template rendering solution. They include:</p><ul><li>Dust templates are compiled to JavaScript for speed of execution</li><li>Since JavaScript is cacheable, Dust templates can be sent to a browser once and reused which is not the case with server-side generated JSP pages</li><li>In addition to being cacheable, the Dust templates compiled to JavaScript can be served from a CDN for faster loading</li><li>No need for UI developers to start a Tomcat server to render a page served with JSON-- much faster cycle time, less issues</li><li>Continuing acceleration of JavaScript performance in browsers continues to make client-side work faster</li><li>Write once and can run the same on both the client (browser) and server using JS engine such as V8/rhino</li></ul><h4>Show me some Dust</h4>  <p>A quick sample is often the best way to get a general sense of something. In that vein, here is a simple Dust template and it's JSON data below it</p><div class="col1"><p>1. Template <span id="select"></span> or write your own:</p><textarea id="input-source" class="console"> <ul></ul> </textarea><div class="status ok">Ready</div><p> The compiled template registers itself by name:</p><pre class="console"><code id="output-js"></code></pre><p>When you're done messing around have a look at the guide.</p></div><div class="divisor"><img src="docs/img/plus.jpeg" height="50px" width="50px"></div><div class="col2"><p>2. Template behavior (contexts and helpers):</p><textarea id="input-context" class="console"> { "title": "Famous People",  "names" : [{ "name": "Larry" },{ "name": "Curly" },{ "name": "Moe" } }</textarea><div class="status ok">Ready</div></div><div class="divisor2"><img src="docs/img/equal.jpeg" height="50px" width="50px"></div><div class="col3"><p>3. Render or stream the result:</p><pre id="output-text" class="console"></pre></div></div></div><script src="vendor/hijs.js"></script></body></html>
