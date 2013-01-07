@@ -35,10 +35,5 @@
     "start": "node server.js",
     "watch": "./node_modules/.bin/mocha --growl --watch",
     "devserver": "./node_modules/node-dev/node-dev server.js"
-  },
-
-  "jam": {
-    "packageDir": "public/javascripts/vendor",
-    "baseUrl": "public/javascripts"
   }
 }
