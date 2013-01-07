@@ -1,0 +1,14 @@
+# run app server in development
+$ ./bin/run_app
+
+# run server side test
+$ ./node_modules/.bin/mocha test/server/*
+
+# run client side test
+1. $ bin/run_app
+2. modify test scope in /test/browser/test_setup.js
+3. open http://127.0.0.1:3000/browser/test_runner.html
+
+# run acceptance
+1. $ bin/run_app
+2. $ casperjs test/acceptance/test_scenario.js

@@ -19,36 +19,6 @@ function compile_dust(path, curr, prev) {
     });
   });
 }
-// 
-// 
-// define('templates/bar', ['dust'], function(dust) {
-//   (function() {
-//     dust.register("templates/bar", body_0);
-// 
-//     function body_0(chk, ctx) {
-//       return chk.write("<h1>").reference(ctx.get("name"), ctx, "h").write("</h1>");
-//     }
-//     return body_0;
-//   })();
-// })
-// 
-// define(['dust'], function(dust) {
-//   (function() {
-//     dust.register("baz", body_0);
-// 
-//     function body_0(chk, ctx) {
-//       return chk.write("<b>").reference(ctx.get("name"), ctx, "h").write("</b>");
-//     }
-//     return body_0;
-//   })();
-//   return {
-//     render: function(context, callback) {
-//       return dust.render('baz', context, callback)
-//     }
-//   }
-// })
-// 
-
 
 function amdfier(source, amdName) {
   return "define('" + amdName + "', ['dust'],function(dust){" + source + " })";
