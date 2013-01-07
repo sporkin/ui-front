@@ -1,15 +1,6 @@
-# javascript dependency
+server dependency file
+  package.json
 
-JAMSJS: 
-  backbone 
-  underscore
-  jquery
+browser dependency loader for development
+  public/javascripts/config.js
 
-NONE-AMD: 
-  dust.js
-
-AMD:
-  *everything
-
-
-# templates are manually included for now

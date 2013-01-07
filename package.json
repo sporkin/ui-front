@@ -36,34 +36,9 @@
     "watch": "./node_modules/.bin/mocha --growl --watch",
     "devserver": "./node_modules/node-dev/node-dev server.js"
   },
+
   "jam": {
     "packageDir": "public/javascripts/vendor",
-    "baseUrl": "public/javascripts",
-    "dependencies": {
-      "jquery": null,
-      "backbone": null,
-      "underscore": null
-    },
-    "config": {
-      "paths": {
-        "bootstrap": "libs/bootstrap.min"
-      }
-    },
-    "shim": {
-      "jquery": {
-        "exports": "$"
-      },
-      "backbone": {
-        "deps": ["jquery", "underscore"],
-        "exports": "Backbone"
-      },
-      "underscore": {
-        "exports": "_"
-      },
-      "bootstrap": {
-        "deps": ["jquery"],
-        "exports": "bootstrap"
-      }
-    }
+    "baseUrl": "public/javascripts"
   }
 }

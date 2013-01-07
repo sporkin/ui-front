@@ -41,6 +41,7 @@ app.configure('development', function() {
 });
 
 
+
 /**
  * Routing Prototype
  */
@@ -89,7 +90,7 @@ connection.addListener('ready', function() {
  */
 setInterval(function() {
   User.create(function() {})
-}, 400000)
+}, 4000)
 
 io.sockets.on('connection', function(socket) {
   socket.emit('news', {
@@ -111,5 +112,5 @@ io.sockets.on('connection', function(socket) {
         });
       }
     }
-  }, 300000)
+  }, 3000)
 });

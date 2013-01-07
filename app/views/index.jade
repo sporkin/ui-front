@@ -12,54 +12,60 @@ block content
       a#home(data-toggle = "tab", href = "/users") Home
     li
       a(data-toggle = "tab") Profile
-  
   #element(data-original-title = "foo") this is element
+  #page-container
 
-  script(src='/socket.io/socket.io.js')
-  script(src="/vendor/require.js")
-
+  //- == examples ==
+  //- AMD
+  //- websocket
+  //- backbone
+  //- bootstrap
+  //- dust
+  //- chaplin
+  
+  script(src="vendor/requirejs/require.js")
+  script(src="config.js")
   script(type="text/javascript")
-    var socket = io.connect('http://127.0.0.1:3000');
+    // server variable delegation using !
     var json = JSON.parse(!{title})
-    socket.on('news', function (data) {
-      socket.emit('my other event', { email: json.email });
+
+    require(['socket'], function() {
+      var socket = io.connect('http://127.0.0.1:3000');
+      socket.on('news', function(data) {
+        socket.emit('my other event', {
+          email: json.email
+        });
+      });
+
+      socket.on('new-data', function(data) {
+        console.log(JSON.stringify(data))
+      });
     });
 
-    socket.on('new-data', function (data) {
-      console.log(JSON.stringify(data))
-    });
-
-  script(type="text/javascript")
-    require(['jquery'], function (jquery) {
-      console.log('ff2')
-    });
-
-    require(['models/user'], function (app) {
-      app.init();
+    require(['models/user'], function(app) {
+      //- app.init();
     });
 
     require(['jquery', 'bootstrap'], function() {
-      $(document).ready(function(){
-        console.log("Loaded :)");
-        console.log($(".close").alert)
+      $(document).ready(function() {
+        console.log("Loaded :)", $(".close").alert);
         $('#element').tooltip('show')
       });
-
-      return {};
     });
 
-  //- templates
-  script(src='/libs/dust-full-1.1.1.js')
-  script(src='/templates/bar.js')
-  script(src='/templates/baz.js')
-  
-  
-  script(type="text/javascript")
-    require(['jquery'], function($) {
-      $(document).ready(function(){
-        dust.render("bar",{name:"suck"}, function(err,out){
+    require(['jquery', 'dust', 'templates/bar'], function() {
+      $(document).ready(function() {
+        dust.render("templates/bar", {
+          name: "suck"
+        }, function(err, out) {
           console.log(out, "wwwww")
-        })
-      })
-      return {};
+        });
+      });
     });
+
+    require(['hello_world_application'], function (HelloWorldApplication) {
+      var app = new HelloWorldApplication();
+      app.initialize();
+    });
+
+

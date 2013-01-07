@@ -1,0 +1,1 @@
+define('templates/hello_world', ['dust'],function(dust){(function(){dust.register("templates/hello_world",body_0);function body_0(chk,ctx){return chk.write("<p>").reference(ctx.get("message"),ctx,"h").write("</p>");}return body_0;})(); })

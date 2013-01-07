@@ -1,1 +1,1 @@
-(function(){dust.register("bar",body_0);function body_0(chk,ctx){return chk.write("<h1>").reference(ctx.get("name"),ctx,"h").write("</h1>");}return body_0;})();
+define('templates/bar', ['dust'],function(dust){(function(){dust.register("templates/bar",body_0);function body_0(chk,ctx){return chk.write("<h1>").reference(ctx.get("name"),ctx,"h").write("</h1>");}return body_0;})(); })

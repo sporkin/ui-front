@@ -1,0 +1,2 @@
+1. include amdfied precompiled dust templates
+2. include symlinked dependencies for linkedin-dustjs.js and templates
