@@ -48,7 +48,7 @@ app.configure('development', function() {
  */
 app.get('/', routes.index);
 app.get('/users', user.list);
-
+app.get('/signup', user.new);
 
 /**
  * AMQP Messaging prototype
@@ -89,6 +89,7 @@ connection.addListener('ready', function() {
  * Async UI rendering events propagation prototype
  * TODO: add pubsub dynamic channeling
  */
+/*
 setInterval(function() {
   User.create(function() {})
 }, 4000)
@@ -115,3 +116,5 @@ io.sockets.on('connection', function(socket) {
     }
   }, 3000)
 });
+
+*/

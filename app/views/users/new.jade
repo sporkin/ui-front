@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  script(type="text/javascript")
+    console.log("fo")
+    require(['jquery', 'dust', 'templates/authentications/signup'], function() {
+      $(document).ready(function() {
+        dust.render('templates/authentications/signup', function(err, out){
+          $('body').append(out); 
+        })
+      })
+    })
+
+
+

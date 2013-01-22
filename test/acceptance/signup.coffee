@@ -1,11 +1,9 @@
 casper = require('casper').create()
-casper.start('http://127.0.0.1:3000')
+casper.start('http://127.0.0.1:3000/signup')
 
 casper.then ->
-	this.click("#home")
-
-casper.then ->
-  this.test.assertTextExists('Hello World!')
+  this.test.assertTextExists('email')
+  this.test.assertTextExists('password')
 
 casper.run ->
   this.exit()

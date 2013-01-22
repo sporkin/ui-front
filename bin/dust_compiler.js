@@ -10,12 +10,33 @@ function compile_dust(path, curr, prev) {
     if (err) throw err;
 
     var filename = path.split("/").reverse()[0].replace(".dust", "");
-    var filepath = output_path + filename + ".js";
-    var compiled = amdfier(dust.compile(new String(data), "templates/" + filename), "templates/" + filename);
+    var paths = path.split("/").reverse();
+    var _path_prefix = "/Users/juhyeong/projects/sporkin.it/ui-front/public/";
+    var _path = "templates";
 
-    fs.writeFile(filepath, compiled, function(err) {
+    while(1) {
+      var e = paths.pop();
+      if(e == 'templates'){
+        break;
+      }
+    }
+
+    function buildPath(l){
+      if(l.length !== 1){
+        e = l.pop();
+        _path = _path + "/" + e;
+        fs.mkdir(_path_prefix + _path);
+        buildPath(l);
+      }
+    }
+
+    buildPath(paths);
+    var dustRefName = _path + "/" + filename;
+    var compiled = amdfier(dust.compile(new String(data), dustRefName), dustRefName);
+
+    fs.writeFile(_path_prefix + dustRefName + ".js", compiled, function(err) {
       if (err) throw err;
-      console.log('Saved ' + filepath);
+      console.log('Saved ' + dustRefName);
     });
   });
 }
