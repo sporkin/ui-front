@@ -26,6 +26,10 @@
     "sinon-chai": "~2.3.0",
     "request": "~2.9.203"
   },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
     "start": "node server.js",
