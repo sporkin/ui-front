@@ -30,7 +30,14 @@ block content
     // var json = JSON.parse(!{title})
 
     require(['socket'], function() {
-      var socket = io.connect('http://' + window.location.hostname + ':!{process.env.PORT}');
+      
+      var socketUrl = 'http://' + window.location.hostname + ':!{process.env.PORT}'
+      
+      if(window.location.hostname === "staging-ui-front.herokuapp.com"){
+        socketUrl = 'http://' + window.location.hostname
+      }
+      
+      var socket = io.connect(socketUrl);
       socket.on('news', function(data) {
         $('body').append(JSON.stringify(data))
         //- socket.emit('my other event', {
