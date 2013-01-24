@@ -12,3 +12,8 @@ $ ./node_modules/.bin/mocha test/server/*
 # run acceptance
 1. $ bin/run_app
 2. $ casperjs test/acceptance/test_scenario.js
+
+
+# heroku
+1. heroku ps:scale web=1 --app staging-ui-front
+2. heroku logs -t --a staging-ui-front

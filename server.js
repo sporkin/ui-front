@@ -16,12 +16,12 @@ var express = require('express'),
 
 var app = express(),
     server = app.listen(3000),
-    io = require('socket.io').listen(server);
+    // io = require('socket.io').listen(server);
 
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 30); 
-});
+// io.configure(function () { 
+//   io.set("transports", ["xhr-polling"]); 
+//   io.set("polling duration", 30); 
+// });
 
 app.configure(function() {
   app.engine('dust', cons.dust);
@@ -103,25 +103,25 @@ app.get('/signup', user.new);
 //   User.create(function() {})
 // }, 2000)
 
-io.sockets.on('connection', function(socket) {
-  socket.emit('news', {
-    hello: 'world'
-  });
-  // var email = null;
-  // socket.on('my other event', function(data) {
-  //   email = data.email
-  //   console.log(data)
-  // });
-  // 
-  // setInterval(function() {
-  //   if (email != null) {
-  //     if (emailToRenderEventsMap[email] != undefined) {
-  //       d = emailToRenderEventsMap[email].pop()
-  //       socket.emit('new-data', {
-  //         cell: d,
-  //         table: emailToRenderEventsMap[email]
-  //       });
-  //     }
-  //   }
-  // }, 2000)
-});
+// io.sockets.on('connection', function(socket) {
+//   socket.emit('news', {
+//     hello: 'world'
+//   });
+//   // var email = null;
+//   // socket.on('my other event', function(data) {
+//   //   email = data.email
+//   //   console.log(data)
+//   // });
+//   // 
+//   // setInterval(function() {
+//   //   if (email != null) {
+//   //     if (emailToRenderEventsMap[email] != undefined) {
+//   //       d = emailToRenderEventsMap[email].pop()
+//   //       socket.emit('new-data', {
+//   //         cell: d,
+//   //         table: emailToRenderEventsMap[email]
+//   //       });
+//   //     }
+//   //   }
+//   // }, 2000)
+// });
