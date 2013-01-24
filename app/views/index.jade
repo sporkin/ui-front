@@ -32,13 +32,14 @@ block content
     require(['socket'], function() {
       var socket = io.connect('http://127.0.0.1:3000');
       socket.on('news', function(data) {
-        socket.emit('my other event', {
-          email: json.email
-        });
+        $('body').append(JSON.stringify(data))
+        //- socket.emit('my other event', {
+        //-   email: json.email
+        //- });
       });
 
       socket.on('new-data', function(data) {
-        console.log(JSON.stringify(data))
+        $('body').append(JSON.stringify(data))
       });
     });
 
