@@ -15,7 +15,9 @@ var express = require('express'),
 //     io = require('socket.io').listen(server);
 
 var app = express(),
-    server = app.listen(3000)
+    server = app.listen(process.env.PORT)
+
+console.log(process.env.PORT)
     // io = require('socket.io').listen(server);
 
 // io.configure(function () { 
