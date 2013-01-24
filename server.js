@@ -11,19 +11,38 @@ var express = require('express'),
     cons = require('consolidate');
 
 // var app = express(),
-//     server = app.listen(3000),
+//     server = app.listen(process.env.PORT)
+    // io = require('socket.io').listen(server);
+
+// var app = express();
+// var server = app.listen();
+// var io = require('socket.io').listen(server);
+
+// var app = express(),
+//     server = app.listen(process.env.PORT),
 //     io = require('socket.io').listen(server);
 
-var app = express(),
-    server = app.listen(process.env.PORT),
-    io = require('socket.io').listen(server);
 
-// io.configure(function () { 
-//   io.set("transports", ["xhr-polling"]); 
-//   io.set("polling duration", 30); 
+// app.configure(function () {
+//    app.set('port', process.env.PORT || 3000);
 // });
 
+
+var app = express()
+  , http = require('http')
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server);
+
+io.configure(function () {
+    io.set("transports", ["xhr-polling"]);
+    io.set("polling duration", 10);
+    io.set("log level", 1);
+});
+
+server.listen(process.env.PORT);
+
 app.configure(function() {
+  console.log(process.env.PORT)
   app.engine('dust', cons.dust);
   app.set('views', __dirname + '/app/views');
   app.set('view engine', 'jade');
