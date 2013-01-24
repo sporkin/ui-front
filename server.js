@@ -1,42 +1,24 @@
-require('coffee-script');
-var express = require('express'),
-    routes = require('./app/routes'),
-    user = require('./app/routes/user'),
-    http = require('http'),
-    path = require('path'),
-    amqp = require('amqp'),
-    stylus = require('stylus'),
-    nib = require('nib'),
-    dust = require('dustjs-linkedin'),
-    cons = require('consolidate');
 
-// var app = express(),
-//     server = app.listen(process.env.PORT)
-    // io = require('socket.io').listen(server);
-
-// var app = express();
-// var server = app.listen();
-// var io = require('socket.io').listen(server);
-
-// var app = express(),
-//     server = app.listen(process.env.PORT),
-//     io = require('socket.io').listen(server);
-
-
-// app.configure(function () {
-//    app.set('port', process.env.PORT || 3000);
-// });
-
-
-var app = express()
+var coffee = require('coffee-script')
+  , express = require('express')
+  , routes = require('./app/routes')
+  , user = require('./app/routes/user')
+  , http = require('http')
+  , path = require('path')
+  , amqp = require('amqp')
+  , stylus = require('stylus')
+  , nib = require('nib')
+  , dust = require('dustjs-linkedin')
+  , cons = require('consolidate')
+  , app = express()
   , http = require('http')
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 
 io.configure(function () {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
-    io.set("log level", 1);
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+  io.set("log level", 1);
 });
 
 server.listen(process.env.PORT);
