@@ -15,7 +15,7 @@ var express = require('express'),
 //     io = require('socket.io').listen(server);
 
 var app = express(),
-    server = app.listen(3000),
+    server = app.listen(3000)
     // io = require('socket.io').listen(server);
 
 // io.configure(function () { 
