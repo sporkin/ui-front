@@ -27,7 +27,7 @@ block content
   script(src="config.js")
   script(type="text/javascript")
     // server variable delegation using !
-    var json = JSON.parse(!{title})
+    // var json = JSON.parse(!{title})
 
     require(['socket'], function() {
       var socket = io.connect('http://127.0.0.1:3000');
